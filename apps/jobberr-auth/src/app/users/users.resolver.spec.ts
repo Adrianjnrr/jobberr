@@ -1,18 +1,26 @@
-// import { Test, TestingModule } from '@nestjs/testing';
-// import { UsersResolver } from '../../../users.resolver';
+import { Test, TestingModule } from '@nestjs/testing';
+import { UsersResolver } from './users.resolver';
 
-// describe('UsersResolver', () => {
-//   let resolver: UsersResolver;
+import { UsersService } from './users.service';
 
-//   beforeEach(async () => {
-//     const module: TestingModule = await Test.createTestingModule({
-//       providers: [UsersResolver],
-//     }).compile();
+describe('UsersResolver', () => {
+  let resolver: UsersResolver;
 
-//     resolver = module.get<UsersResolver>(UsersResolver);
-//   });
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      providers: [
+        UsersResolver,
+        {
+          provide: UsersService,
+          useValue: {},
+        },
+      ],
+    }).compile();
 
-//   it('should be defined', () => {
-//     expect(resolver).toBeDefined();
-//   });
-// });
+    resolver = module.get<UsersResolver>(UsersResolver);
+  });
+
+  it('should be defined', () => {
+    expect(resolver).toBeDefined();
+  });
+});
